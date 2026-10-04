@@ -1,0 +1,343 @@
+   Compiling rainflow v0.1.0 (/media/Development/RUST/CRATES/rainflow)
+    Finished `bench` profile [optimized] target(s) in 1.15s
+     Running unittests src/lib.rs (target/release/deps/rainflow-269fef98685c455a)
+
+running 26 tests
+test tests::test_rainflow::test_constant_records_have_no_cycles ... ignored
+test tests::test_rainflow::test_defensive_mean_guard ... ignored
+test tests::test_rainflow::test_determinism_twenty_repetitions ... ignored
+test tests::test_rainflow::test_deterministic_error_variants_twenty_repetitions ... ignored
+test tests::test_rainflow::test_exact_affine_and_sign_transformations ... ignored
+test tests::test_rainflow::test_exhaustive_small_integer_invariants ... ignored
+test tests::test_rainflow::test_invalid_calls_do_not_panic ... ignored
+test tests::test_rainflow::test_large_negative_finite_midpoint ... ignored
+test tests::test_rainflow::test_large_offset_small_exact_variation ... ignored
+test tests::test_rainflow::test_large_positive_finite_midpoint ... ignored
+test tests::test_rainflow::test_length_bound_failure_precedes_finiteness ... ignored
+test tests::test_rainflow::test_maximum_residual_stack_and_closure_cascade ... ignored
+test tests::test_rainflow::test_nested_full_cycle_precedes_boundary_residual ... ignored
+test tests::test_rainflow::test_no_call_history_or_input_mutation ... ignored
+test tests::test_rainflow::test_nonfinite_samples_are_never_skipped ... ignored
+test tests::test_rainflow::test_opposite_sign_midpoint_cancellation ... ignored
+test tests::test_rainflow::test_overflow_in_output_or_comparison_is_rejected ... ignored
+test tests::test_rainflow::test_pinned_independent_reference_fixture ... ignored
+test tests::test_rainflow::test_plateaus_preserve_original_endpoint_indices ... ignored
+test tests::test_rainflow::test_reservation_failure_conversion_without_oom ... ignored
+test tests::test_rainflow::test_short_length_failure_precedes_finiteness ... ignored
+test tests::test_rainflow::test_smallest_subnormals_and_midpoint_underflow ... ignored
+test tests::test_rainflow::test_tiny_excursion_is_not_epsilon_merged ... ignored
+test tests::test_rainflow::test_triangle_and_equal_ranges_are_unmerged_half_cycles ... ignored
+test tests::test_rainflow::test_two_points_and_monotone_records ... ignored
+test tests::test_rainflow::test_valid_calls_do_not_panic ... ignored
+
+test result: ok. 0 passed; 0 failed; 26 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running benches/rainflow.rs (target/release/deps/rainflow-409d45f891abe8a0)
+Gnuplot not found, using plotters backend
+ALLOC constant n=100 calls=0 requested_bytes=0 cycles=0
+Benchmarking signal_rainflow_end_to_end/constant/100
+Benchmarking signal_rainflow_end_to_end/constant/100: Warming up for 200.00 ms
+Benchmarking signal_rainflow_end_to_end/constant/100: Collecting 30 samples in estimated 500.01 ms (11M iterations)
+Benchmarking signal_rainflow_end_to_end/constant/100: Analyzing
+signal_rainflow_end_to_end/constant/100
+                        time:   [46.105 ns 46.298 ns 46.458 ns]
+                        thrpt:  [2.1525 Gelem/s 2.1599 Gelem/s 2.1689 Gelem/s]
+                 change:
+                        time:   [+1.4046% +2.4970% +3.6103%] (p = 0.00 < 0.05)
+                        thrpt:  [−3.4845% −2.4361% −1.3851%]
+                        Performance has regressed.
+Found 3 outliers among 30 measurements (10.00%)
+  1 (3.33%) low mild
+  2 (6.67%) high mild
+ALLOC monotone n=100 calls=2 requested_bytes=4760 cycles=1
+Benchmarking signal_rainflow_end_to_end/monotone/100
+Benchmarking signal_rainflow_end_to_end/monotone/100: Warming up for 200.00 ms
+Benchmarking signal_rainflow_end_to_end/monotone/100: Collecting 30 samples in estimated 500.01 ms (1.5M iterations)
+Benchmarking signal_rainflow_end_to_end/monotone/100: Analyzing
+signal_rainflow_end_to_end/monotone/100
+                        time:   [316.52 ns 326.90 ns 345.11 ns]
+                        thrpt:  [289.76 Melem/s 305.90 Melem/s 315.94 Melem/s]
+                 change:
+                        time:   [+3.1284% +6.8557% +11.055%] (p = 0.00 < 0.05)
+                        thrpt:  [−9.9542% −6.4159% −3.0335%]
+                        Performance has regressed.
+Found 4 outliers among 30 measurements (13.33%)
+  1 (3.33%) high mild
+  3 (10.00%) high severe
+ALLOC alternating n=100 calls=2 requested_bytes=4760 cycles=99
+Benchmarking signal_rainflow_end_to_end/alternating/100
+Benchmarking signal_rainflow_end_to_end/alternating/100: Warming up for 200.00 ms
+Benchmarking signal_rainflow_end_to_end/alternating/100: Collecting 30 samples in estimated 500.16 ms (283k iterations)
+Benchmarking signal_rainflow_end_to_end/alternating/100: Analyzing
+signal_rainflow_end_to_end/alternating/100
+                        time:   [1.6278 µs 1.6341 µs 1.6396 µs]
+                        thrpt:  [60.992 Melem/s 61.197 Melem/s 61.434 Melem/s]
+                 change:
+                        time:   [+2.4019% +3.2407% +4.0635%] (p = 0.00 < 0.05)
+                        thrpt:  [−3.9048% −3.1389% −2.3456%]
+                        Performance has regressed.
+ALLOC nested n=100 calls=2 requested_bytes=4760 cycles=60
+Benchmarking signal_rainflow_end_to_end/nested/100
+Benchmarking signal_rainflow_end_to_end/nested/100: Warming up for 200.00 ms
+Benchmarking signal_rainflow_end_to_end/nested/100: Collecting 30 samples in estimated 500.24 ms (375k iterations)
+Benchmarking signal_rainflow_end_to_end/nested/100: Analyzing
+signal_rainflow_end_to_end/nested/100
+                        time:   [1.2359 µs 1.2390 µs 1.2419 µs]
+                        thrpt:  [80.521 Melem/s 80.707 Melem/s 80.915 Melem/s]
+                 change:
+                        time:   [−8.3468% +0.1381% +7.7999%] (p = 0.99 > 0.05)
+                        thrpt:  [−7.2356% −0.1379% +9.1070%]
+                        No change in performance detected.
+Found 2 outliers among 30 measurements (6.67%)
+  1 (3.33%) low mild
+  1 (3.33%) high mild
+ALLOC plateaus n=100 calls=2 requested_bytes=4760 cycles=12
+Benchmarking signal_rainflow_end_to_end/plateaus/100
+Benchmarking signal_rainflow_end_to_end/plateaus/100: Warming up for 200.00 ms
+Benchmarking signal_rainflow_end_to_end/plateaus/100: Collecting 30 samples in estimated 500.06 ms (1.2M iterations)
+Benchmarking signal_rainflow_end_to_end/plateaus/100: Analyzing
+signal_rainflow_end_to_end/plateaus/100
+                        time:   [373.34 ns 374.53 ns 375.56 ns]
+                        thrpt:  [266.27 Melem/s 267.00 Melem/s 267.86 Melem/s]
+                 change:
+                        time:   [+8.8814% +10.233% +11.610%] (p = 0.00 < 0.05)
+                        thrpt:  [−10.403% −9.2828% −8.1569%]
+                        Performance has regressed.
+ALLOC residual n=100 calls=2 requested_bytes=4760 cycles=99
+Benchmarking signal_rainflow_end_to_end/residual/100
+Benchmarking signal_rainflow_end_to_end/residual/100: Warming up for 200.00 ms
+Benchmarking signal_rainflow_end_to_end/residual/100: Collecting 30 samples in estimated 500.46 ms (241k iterations)
+Benchmarking signal_rainflow_end_to_end/residual/100: Analyzing
+signal_rainflow_end_to_end/residual/100
+                        time:   [1.6909 µs 1.6971 µs 1.7036 µs]
+                        thrpt:  [58.699 Melem/s 58.926 Melem/s 59.141 Melem/s]
+                 change:
+                        time:   [−7.1274% −1.6416% +2.9629%] (p = 0.62 > 0.05)
+                        thrpt:  [−2.8777% +1.6690% +7.6744%]
+                        No change in performance detected.
+Found 1 outliers among 30 measurements (3.33%)
+  1 (3.33%) high mild
+ALLOC cascade n=100 calls=2 requested_bytes=4760 cycles=50
+Benchmarking signal_rainflow_end_to_end/cascade/100
+Benchmarking signal_rainflow_end_to_end/cascade/100: Warming up for 200.00 ms
+Benchmarking signal_rainflow_end_to_end/cascade/100: Collecting 30 samples in estimated 500.38 ms (380k iterations)
+Benchmarking signal_rainflow_end_to_end/cascade/100: Analyzing
+signal_rainflow_end_to_end/cascade/100
+                        time:   [1.3336 µs 1.3368 µs 1.3395 µs]
+                        thrpt:  [74.654 Melem/s 74.805 Melem/s 74.985 Melem/s]
+                 change:
+                        time:   [−0.6277% −0.0522% +0.5196%] (p = 0.87 > 0.05)
+                        thrpt:  [−0.5169% +0.0522% +0.6317%]
+                        No change in performance detected.
+Found 2 outliers among 30 measurements (6.67%)
+  1 (3.33%) low mild
+  1 (3.33%) high severe
+ALLOC constant n=1000 calls=0 requested_bytes=0 cycles=0
+Benchmarking signal_rainflow_end_to_end/constant/1000
+Benchmarking signal_rainflow_end_to_end/constant/1000: Warming up for 200.00 ms
+Benchmarking signal_rainflow_end_to_end/constant/1000: Collecting 30 samples in estimated 500.02 ms (1.2M iterations)
+Benchmarking signal_rainflow_end_to_end/constant/1000: Analyzing
+signal_rainflow_end_to_end/constant/1000
+                        time:   [377.79 ns 379.41 ns 381.05 ns]
+                        thrpt:  [2.6243 Gelem/s 2.6357 Gelem/s 2.6470 Gelem/s]
+                 change:
+                        time:   [−3.7431% +0.2608% +3.2293%] (p = 0.91 > 0.05)
+                        thrpt:  [−3.1283% −0.2602% +3.8887%]
+                        No change in performance detected.
+ALLOC monotone n=1000 calls=2 requested_bytes=47960 cycles=1
+Benchmarking signal_rainflow_end_to_end/monotone/1000
+Benchmarking signal_rainflow_end_to_end/monotone/1000: Warming up for 200.00 ms
+Benchmarking signal_rainflow_end_to_end/monotone/1000: Collecting 30 samples in estimated 500.60 ms (198k iterations)
+Benchmarking signal_rainflow_end_to_end/monotone/1000: Analyzing
+signal_rainflow_end_to_end/monotone/1000
+                        time:   [2.2993 µs 2.4606 µs 2.7096 µs]
+                        thrpt:  [369.06 Melem/s 406.41 Melem/s 434.91 Melem/s]
+                 change:
+                        time:   [+5.9916% +14.828% +25.566%] (p = 0.00 < 0.05)
+                        thrpt:  [−20.360% −12.913% −5.6529%]
+                        Performance has regressed.
+Found 6 outliers among 30 measurements (20.00%)
+  1 (3.33%) low mild
+  5 (16.67%) high severe
+ALLOC alternating n=1000 calls=2 requested_bytes=47960 cycles=999
+Benchmarking signal_rainflow_end_to_end/alternating/1000
+Benchmarking signal_rainflow_end_to_end/alternating/1000: Warming up for 200.00 ms
+Benchmarking signal_rainflow_end_to_end/alternating/1000: Collecting 30 samples in estimated 504.95 ms (32k iterations)
+Benchmarking signal_rainflow_end_to_end/alternating/1000: Analyzing
+signal_rainflow_end_to_end/alternating/1000
+                        time:   [14.969 µs 15.410 µs 16.355 µs]
+                        thrpt:  [61.143 Melem/s 64.894 Melem/s 66.806 Melem/s]
+                 change:
+                        time:   [−4.5416% +1.0780% +7.0594%] (p = 0.75 > 0.05)
+                        thrpt:  [−6.5939% −1.0665% +4.7577%]
+                        No change in performance detected.
+Found 2 outliers among 30 measurements (6.67%)
+  1 (3.33%) low mild
+  1 (3.33%) high severe
+ALLOC nested n=1000 calls=2 requested_bytes=47960 cycles=600
+Benchmarking signal_rainflow_end_to_end/nested/1000
+Benchmarking signal_rainflow_end_to_end/nested/1000: Warming up for 200.00 ms
+Benchmarking signal_rainflow_end_to_end/nested/1000: Collecting 30 samples in estimated 503.79 ms (43k iterations)
+Benchmarking signal_rainflow_end_to_end/nested/1000: Analyzing
+signal_rainflow_end_to_end/nested/1000
+                        time:   [11.093 µs 11.178 µs 11.312 µs]
+                        thrpt:  [88.405 Melem/s 89.464 Melem/s 90.146 Melem/s]
+                 change:
+                        time:   [+8.0518% +23.975% +42.841%] (p = 0.00 < 0.05)
+                        thrpt:  [−29.992% −19.338% −7.4518%]
+                        Performance has regressed.
+Found 6 outliers among 30 measurements (20.00%)
+  6 (20.00%) high severe
+ALLOC plateaus n=1000 calls=2 requested_bytes=47960 cycles=124
+Benchmarking signal_rainflow_end_to_end/plateaus/1000
+Benchmarking signal_rainflow_end_to_end/plateaus/1000: Warming up for 200.00 ms
+Benchmarking signal_rainflow_end_to_end/plateaus/1000: Collecting 30 samples in estimated 500.52 ms (179k iterations)
+Benchmarking signal_rainflow_end_to_end/plateaus/1000: Analyzing
+signal_rainflow_end_to_end/plateaus/1000
+                        time:   [2.7925 µs 2.8019 µs 2.8114 µs]
+                        thrpt:  [355.69 Melem/s 356.90 Melem/s 358.10 Melem/s]
+                 change:
+                        time:   [+3.7310% +4.6806% +5.5713%] (p = 0.00 < 0.05)
+                        thrpt:  [−5.2773% −4.4713% −3.5968%]
+                        Performance has regressed.
+Found 1 outliers among 30 measurements (3.33%)
+  1 (3.33%) high mild
+ALLOC residual n=1000 calls=2 requested_bytes=47960 cycles=999
+Benchmarking signal_rainflow_end_to_end/residual/1000
+Benchmarking signal_rainflow_end_to_end/residual/1000: Warming up for 200.00 ms
+Benchmarking signal_rainflow_end_to_end/residual/1000: Collecting 30 samples in estimated 507.59 ms (29k iterations)
+Benchmarking signal_rainflow_end_to_end/residual/1000: Analyzing
+signal_rainflow_end_to_end/residual/1000
+                        time:   [16.277 µs 16.320 µs 16.367 µs]
+                        thrpt:  [61.098 Melem/s 61.274 Melem/s 61.436 Melem/s]
+                 change:
+                        time:   [+2.3958% +3.0464% +3.7899%] (p = 0.00 < 0.05)
+                        thrpt:  [−3.6515% −2.9563% −2.3397%]
+                        Performance has regressed.
+Found 2 outliers among 30 measurements (6.67%)
+  1 (3.33%) low mild
+  1 (3.33%) high mild
+ALLOC cascade n=1000 calls=2 requested_bytes=47960 cycles=500
+Benchmarking signal_rainflow_end_to_end/cascade/1000
+Benchmarking signal_rainflow_end_to_end/cascade/1000: Warming up for 200.00 ms
+Benchmarking signal_rainflow_end_to_end/cascade/1000: Collecting 30 samples in estimated 502.97 ms (40k iterations)
+Benchmarking signal_rainflow_end_to_end/cascade/1000: Analyzing
+signal_rainflow_end_to_end/cascade/1000
+                        time:   [12.784 µs 13.133 µs 13.770 µs]
+                        thrpt:  [72.619 Melem/s 76.144 Melem/s 78.222 Melem/s]
+                 change:
+                        time:   [+5.1417% +8.9256% +14.672%] (p = 0.00 < 0.05)
+                        thrpt:  [−12.795% −8.1942% −4.8902%]
+                        Performance has regressed.
+Found 4 outliers among 30 measurements (13.33%)
+  1 (3.33%) high mild
+  3 (10.00%) high severe
+ALLOC constant n=10000 calls=0 requested_bytes=0 cycles=0
+TAIL constant n=10000 samples=1000 p50_ns=4166 p95_ns=4209 p99_ns=4226 max_ns=16925
+Benchmarking signal_rainflow_end_to_end/constant/10000
+Benchmarking signal_rainflow_end_to_end/constant/10000: Warming up for 200.00 ms
+Benchmarking signal_rainflow_end_to_end/constant/10000: Collecting 30 samples in estimated 500.36 ms (134k iterations)
+Benchmarking signal_rainflow_end_to_end/constant/10000: Analyzing
+signal_rainflow_end_to_end/constant/10000
+                        time:   [3.7734 µs 3.7881 µs 3.8045 µs]
+                        thrpt:  [2.6285 Gelem/s 2.6398 Gelem/s 2.6501 Gelem/s]
+                 change:
+                        time:   [+2.0695% +3.3500% +4.4563%] (p = 0.00 < 0.05)
+                        thrpt:  [−4.2662% −3.2414% −2.0276%]
+                        Performance has regressed.
+Found 1 outliers among 30 measurements (3.33%)
+  1 (3.33%) high mild
+ALLOC monotone n=10000 calls=2 requested_bytes=479960 cycles=1
+TAIL monotone n=10000 samples=1000 p50_ns=21014 p95_ns=25632 p99_ns=37148 max_ns=52245
+Benchmarking signal_rainflow_end_to_end/monotone/10000
+Benchmarking signal_rainflow_end_to_end/monotone/10000: Warming up for 200.00 ms
+Benchmarking signal_rainflow_end_to_end/monotone/10000: Collecting 30 samples in estimated 503.02 ms (23k iterations)
+Benchmarking signal_rainflow_end_to_end/monotone/10000: Analyzing
+signal_rainflow_end_to_end/monotone/10000
+                        time:   [21.212 µs 21.307 µs 21.446 µs]
+                        thrpt:  [466.28 Melem/s 469.33 Melem/s 471.42 Melem/s]
+                 change:
+                        time:   [+4.6113% +5.4170% +6.2632%] (p = 0.00 < 0.05)
+                        thrpt:  [−5.8941% −5.1387% −4.4081%]
+                        Performance has regressed.
+Found 3 outliers among 30 measurements (10.00%)
+  1 (3.33%) high mild
+  2 (6.67%) high severe
+ALLOC alternating n=10000 calls=2 requested_bytes=479960 cycles=9999
+TAIL alternating n=10000 samples=1000 p50_ns=144360 p95_ns=164008 p99_ns=181630 max_ns=210579
+Benchmarking signal_rainflow_end_to_end/alternating/10000
+Benchmarking signal_rainflow_end_to_end/alternating/10000: Warming up for 200.00 ms
+Benchmarking signal_rainflow_end_to_end/alternating/10000: Collecting 30 samples in estimated 545.51 ms (3720 iterations)
+Benchmarking signal_rainflow_end_to_end/alternating/10000: Analyzing
+signal_rainflow_end_to_end/alternating/10000
+                        time:   [147.55 µs 148.32 µs 149.53 µs]
+                        thrpt:  [66.877 Melem/s 67.423 Melem/s 67.771 Melem/s]
+                 change:
+                        time:   [+2.6525% +3.6704% +4.7062%] (p = 0.00 < 0.05)
+                        thrpt:  [−4.4946% −3.5404% −2.5840%]
+                        Performance has regressed.
+Found 1 outliers among 30 measurements (3.33%)
+  1 (3.33%) high severe
+ALLOC nested n=10000 calls=2 requested_bytes=479960 cycles=6000
+TAIL nested n=10000 samples=1000 p50_ns=106717 p95_ns=256208 p99_ns=342432 max_ns=373357
+Benchmarking signal_rainflow_end_to_end/nested/10000
+Benchmarking signal_rainflow_end_to_end/nested/10000: Warming up for 200.00 ms
+Benchmarking signal_rainflow_end_to_end/nested/10000: Collecting 30 samples in estimated 538.09 ms (4650 iterations)
+Benchmarking signal_rainflow_end_to_end/nested/10000: Analyzing
+signal_rainflow_end_to_end/nested/10000
+                        time:   [108.79 µs 109.06 µs 109.30 µs]
+                        thrpt:  [91.488 Melem/s 91.691 Melem/s 91.917 Melem/s]
+                 change:
+                        time:   [+4.7320% +9.8406% +16.223%] (p = 0.00 < 0.05)
+                        thrpt:  [−13.958% −8.9590% −4.5182%]
+                        Performance has regressed.
+Found 4 outliers among 30 measurements (13.33%)
+  4 (13.33%) high severe
+ALLOC plateaus n=10000 calls=2 requested_bytes=479960 cycles=1249
+TAIL plateaus n=10000 samples=1000 p50_ns=26423 p95_ns=39300 p99_ns=46922 max_ns=62363
+Benchmarking signal_rainflow_end_to_end/plateaus/10000
+Benchmarking signal_rainflow_end_to_end/plateaus/10000: Warming up for 200.00 ms
+Benchmarking signal_rainflow_end_to_end/plateaus/10000: Collecting 30 samples in estimated 508.92 ms (19k iterations)
+Benchmarking signal_rainflow_end_to_end/plateaus/10000: Analyzing
+signal_rainflow_end_to_end/plateaus/10000
+                        time:   [26.999 µs 27.274 µs 27.811 µs]
+                        thrpt:  [359.57 Melem/s 366.66 Melem/s 370.38 Melem/s]
+                 change:
+                        time:   [−8.3177% +1.0955% +8.2106%] (p = 0.85 > 0.05)
+                        thrpt:  [−7.5876% −1.0836% +9.0723%]
+                        No change in performance detected.
+Found 2 outliers among 30 measurements (6.67%)
+  2 (6.67%) high severe
+ALLOC residual n=10000 calls=2 requested_bytes=479960 cycles=9999
+TAIL residual n=10000 samples=1000 p50_ns=160312 p95_ns=320822 p99_ns=513711 max_ns=547119
+Benchmarking signal_rainflow_end_to_end/residual/10000
+Benchmarking signal_rainflow_end_to_end/residual/10000: Warming up for 200.00 ms
+Benchmarking signal_rainflow_end_to_end/residual/10000: Collecting 30 samples in estimated 524.48 ms (3255 iterations)
+Benchmarking signal_rainflow_end_to_end/residual/10000: Analyzing
+signal_rainflow_end_to_end/residual/10000
+                        time:   [161.18 µs 161.36 µs 161.52 µs]
+                        thrpt:  [61.913 Melem/s 61.972 Melem/s 62.041 Melem/s]
+                 change:
+                        time:   [+2.0248% +2.8530% +3.6655%] (p = 0.00 < 0.05)
+                        thrpt:  [−3.5359% −2.7739% −1.9847%]
+                        Performance has regressed.
+Found 2 outliers among 30 measurements (6.67%)
+  1 (3.33%) low mild
+  1 (3.33%) high severe
+ALLOC cascade n=10000 calls=2 requested_bytes=479960 cycles=5000
+TAIL cascade n=10000 samples=1000 p50_ns=123526 p95_ns=138161 p99_ns=147707 max_ns=170305
+Benchmarking signal_rainflow_end_to_end/cascade/10000
+Benchmarking signal_rainflow_end_to_end/cascade/10000: Warming up for 200.00 ms
+Benchmarking signal_rainflow_end_to_end/cascade/10000: Collecting 30 samples in estimated 558.42 ms (4185 iterations)
+Benchmarking signal_rainflow_end_to_end/cascade/10000: Analyzing
+signal_rainflow_end_to_end/cascade/10000
+                        time:   [126.64 µs 127.73 µs 129.12 µs]
+                        thrpt:  [77.445 Melem/s 78.289 Melem/s 78.963 Melem/s]
+                 change:
+                        time:   [+4.3590% +5.4595% +6.6500%] (p = 0.00 < 0.05)
+                        thrpt:  [−6.2354% −5.1769% −4.1769%]
+                        Performance has regressed.
+Found 4 outliers among 30 measurements (13.33%)
+  3 (10.00%) high mild
+  1 (3.33%) high severe
+

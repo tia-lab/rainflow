@@ -4,24 +4,6 @@ use std::ffi::OsStr;
 use std::fs;
 use std::path::{Path, PathBuf};
 
-const LEGAL_HEADER: &str = r#"--------------------------------------------------------------------------------
-MATHILDE PROPRIETARY AND CONFIDENTIAL
-Copyright (c) 2024 MATHILDE. All Rights Reserved.
-
-This document contains trade secrets and confidential information owned
-exclusively by MATHILDE, protected under Swiss law (URG, UWG, Art. 162 StGB).
-
-PROHIBITED: Reproduction, copying, distribution, disclosure, or derivative
-works without prior written authorization from MATHILDE.
-
-ACCESS REQUIREMENT: Executed NDA with MATHILDE required. Unauthorized access
-or possession violates Swiss law. Violations subject to civil remedies,
-injunctive relief, damages, and criminal prosecution.
-
-Legal Contact: massimo.nicora@wnlegal.ch
---------------------------------------------------------------------------------
-"#;
-
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 struct ModuleArtifacts {
@@ -35,11 +17,8 @@ struct ModuleArtifacts {
 }
 
 fn repo_root_from_crate_root(crate_root: &Path) -> Result<PathBuf, String> {
-    // Standalone crate layout:
-    // crate_root: .../<repo>/math
-    // repo_root:  .../<repo>
-    let repo_root = crate_root.parent().ok_or("crate_root has no parent")?;
-    Ok(repo_root.to_path_buf())
+    // Standalone crate checkout: the crate root is the repo root.
+    Ok(crate_root.to_path_buf())
 }
 
 fn rel_path(repo_root: &Path, path: &Path) -> Result<String, String> {
@@ -86,6 +65,13 @@ fn discover_module_inventories(crate_root: &Path) -> Result<Vec<PathBuf>, String
             .to_string_lossy();
         ma.cmp(&mb)
     });
+    // Flat single-module crate: fall back to the crate-level inventory.
+    if inventories.is_empty() {
+        let inv = crate_root.join("docs").join("inventory.md");
+        if inv.is_file() {
+            inventories.push(inv);
+        }
+    }
     Ok(inventories)
 }
 
@@ -164,8 +150,11 @@ fn collect_artifacts(
     math_reviews.sort();
 
     let tests_dir_path = module_dir.join("tests");
+    let flat_tests_path = crate_root.join("src").join("tests");
     let tests_dir = if tests_dir_path.is_dir() {
         Some(rel_path(repo_root, &tests_dir_path)?)
+    } else if flat_tests_path.is_dir() {
+        Some(rel_path(repo_root, &flat_tests_path)?)
     } else {
         None
     };
@@ -221,7 +210,7 @@ fn parse_inventory_source_file_purposes(inventory_text: &str) -> HashMap<String,
         if !path.ends_with(".rs") {
             continue;
         }
-        if !path.starts_with("math/src/") {
+        if !(path.starts_with("src/") || path.starts_with("bin/")) {
             continue;
         }
         let after = rest[end_tick + 1..].trim_start();
@@ -245,7 +234,21 @@ fn module_source_files(repo_root: &Path, module_dir: &Path) -> Result<Vec<String
             let entry = entry.map_err(|e| format!("read_dir entry failed: {e}"))?;
             let p = entry.path();
             if p.is_dir() {
-                if p.file_name() == Some(OsStr::new("tests")) {
+                // The flat-crate walk starts at the crate root; skip non-source trees.
+                const SKIP: [&str; 10] = [
+                    "tests",
+                    "target",
+                    "node_modules",
+                    ".git",
+                    ".pi",
+                    ".dev",
+                    ".vscode",
+                    ".husky",
+                    "docs",
+                    "benches",
+                ];
+                let name = p.file_name().map(|n| n.to_string_lossy().to_string());
+                if name.is_some_and(|n| SKIP.contains(&n.as_str())) {
                     continue;
                 }
                 stack.push(p);
@@ -359,19 +362,14 @@ fn main() -> Result<(), String> {
     let mut any_gap = false;
 
     let mut lines: Vec<String> = vec![];
-    lines.push(LEGAL_HEADER.trim_end_matches('\n').to_string());
     lines.push("".to_string());
-    lines.push("# `math` — Global Inventory (GENERATED; DO NOT EDIT)".to_string());
+    lines.push("# `rainflow` — Global Inventory (GENERATED; DO NOT EDIT)".to_string());
     lines.push("".to_string());
     lines.push(format!("Generated: {now}"));
-    lines.push(
-        "Protocol: `math/docs/protocols/global_inventory_generation_protocol.md`"
-            .to_string(),
-    );
+    lines.push("Protocol: `.dev/protocols/global_inventory_generation_protocol.md`".to_string());
     lines.push("".to_string());
     lines.push(
-        "This file is generated from per-module inventories under `math/src/*/docs/inventory.md`."
-            .to_string(),
+        "This file is generated from the crate inventory at `docs/inventory.md`.".to_string(),
     );
     lines.push(
         "If a file purpose is missing in a module inventory, this file will mark it as `INVENTORY GAP`."
@@ -391,7 +389,7 @@ fn main() -> Result<(), String> {
             .to_string();
         let inv_rel = rel_path(&repo_root, inv)?;
         validate_exists(&repo_root, &inv_rel)?;
-        lines.push(format!("- `math::{module_name}`: `{inv_rel}`"));
+        lines.push(format!("- `{module_name}`: `{inv_rel}`"));
     }
 
     lines.push("".to_string());
@@ -435,7 +433,7 @@ fn main() -> Result<(), String> {
         let purposes = parse_inventory_source_file_purposes(&inv_text);
         let module_files = module_source_files(&repo_root, module_dir)?;
 
-        lines.push(format!("## `math::{module_name}`"));
+        lines.push(format!("## `{module_name}`"));
         lines.push("".to_string());
         lines.push("### Artifacts".to_string());
         lines.push("".to_string());

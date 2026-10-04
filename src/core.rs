@@ -1,8 +1,6 @@
 use crate::{MathError, MathResult, config::RAINFLOW_MAX_INPUT_LEN};
 use std::collections::TryReserveError;
 
-
-
 /// An excursion range, not a complete cycle's temporal duration.
 /// Endpoint indices identify its extrema, not when the cycle became observable.
 #[derive(Debug, Clone, Copy, PartialEq)]
