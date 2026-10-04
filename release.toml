@@ -1,14 +1,11 @@
-allow-branch = [
-    "main",
-    "!HEAD",
-]
+allow-branch = ["main", "!HEAD"]
 
 publish = false
 push = true
 push-remote = "origin"
 
 tag = true
-tag-name = "math-v{{version}}"
+tag-name = "rain-v{{version}}"
 tag-message = "chore: Release {{crate_name}} {{version}}"
 
 pre-release-commit-message = "chore: Release {{crate_name}} {{version}}"
